@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Divya Priya S — Portfolio</title>
+  <meta name="description" content="Portfolio of Divya Priya — Web & Android Developer" />
+  <style>
+    /* --- Reset & base --- */
+    :root{
+      --bg1:#000000;
+      --bg2:#121212;
+      --accent1:#6c5ce7; /* purple */
+      --accent2:#00bcd4; /* blue tint */
+      --muted:#9aa3b2;
+      --glass: rgba(255,255,255,0.04);
+      --card: rgba(255,255,255,0.03);
+      --glow: 0 6px 30px rgba(108,92,231,0.18);
+      --maxw:1100px;
+      --ff-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--ff-sans);
+      background: linear-gradient(180deg, var(--bg1) 0%, #0e0e10 45%, #0b0624 100%);
+      color: #e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* --- Layout --- */
+    .container{max-width:var(--maxw);margin:0 auto;padding:48px 24px;}
+    header{
+      position:fixed;left:0;right:0;top:0;z-index:40;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.25));
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 24px;}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:44px;height:44px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:var(--glow);
+      font-weight:700;color:#fff;font-size:16px;
+    }
+    .navlinks{display:flex;gap:18px;align-items:center}
+    .navlinks a{padding:8px 10px;border-radius:8px;font-weight:600;color:var(--muted);font-size:14px}
+    .navlinks a:hover{color:#fff;background:rgba(255,255,255,0.02)}
+    .cta{display:flex;gap:10px;align-items:center}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;
+      background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);
+      cursor:pointer;font-weight:700;color:#fff;font-size:14px;
+    }
+    .btn.glow{
+      background: linear-gradient(90deg, rgba(108,92,231,0.16), rgba(0,188,212,0.06));
+      box-shadow: 0 8px 40px rgba(108,92,231,0.13);
+      border: 1px solid rgba(108,92,231,0.22);
+    }
+
+    main{padding-top:90px}
+
+    /* --- Hero --- */
+    .hero{
+      display:flex;gap:40px;align-items:center;padding:64px 0 40px;
+      min-height:70vh;
+    }
+    .hero-left{flex:1}
+    .hero-right{flex:1;display:flex;align-items:center;justify-content:center}
+    .name{
+      font-size:40px;font-weight:800;letter-spacing:0.6px;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      text-shadow: 0 8px 30px rgba(6,6,20,0.6);
+    }
+    .title{color:var(--muted);font-weight:600;margin:6px 0 18px}
+    .intro{
+      color: #cfe7ff; max-width:650px;margin-bottom:20px;font-size:15px;
+    }
+    .hero-actions{display:flex;gap:12px}
+    .download{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;font-weight:700;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#fff;border:0;cursor:pointer;
+      box-shadow: var(--glow);
+    }
+    .secondary{
+      padding:12px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);
+      background:transparent;color:var(--muted);cursor:pointer;font-weight:700;
+    }
+
+    /* --- Card / sections --- */
+    .section{
+      padding:36px 0 56px;
+    }
+    h2.section-title{
+      font-size:20px;margin:0 0 18px;
+      color: #fff;font-weight:800;
+      display:flex;align-items:center;gap:12px;
+    }
+    .underline{
+      height:8px;width:120px;border-radius:6px;background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      box-shadow:var(--glow);
+      margin-left:10px;opacity:0.9;
+    }
+
+    .about .card, .projects .card, .internship .card, .education .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 6px 24px rgba(2,4,14,0.6);
+    }
+
+    /* --- Projects grid --- */
+    .grid{
+      display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:16px;
+    }
+    .project-card{
+      padding:16px;border-radius:12px;background:var(--card);border:1px solid rgba(255,255,255,0.03);
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .project-card:hover{transform:translateY(-8px);box-shadow:0 18px 60px rgba(10,8,30,0.6)}
+    .proj-title{font-weight:800;margin-bottom:6px}
+    .proj-tech{font-size:13px;color:var(--muted);margin-bottom:8px}
+    .proj-desc{font-size:14px;color:#d9e8ff;line-height:1.35}
+
+    /* --- Skills --- */
+    .skills-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .skill-chip{
+      background:rgba(255,255,255,0.03);padding:10px 12px;border-radius:999px;font-weight:700;font-size:13px;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    /* --- Contact --- */
+    .contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+    .contact-card{padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));text-align:center}
+    .contact-card .big{font-weight:800;font-size:16px;margin-top:8px}
+    .contact-card .small{color:var(--muted);font-size:13px;margin-top:6px}
+
+    /* --- Footer --- */
+    footer{padding:20px 0;color:var(--muted);text-align:center;font-size:13px;border-top:1px solid rgba(255,255,255,0.02)}
+
+    /* --- Responsive --- */
+    @media (max-width:880px){
+      .grid{grid-template-columns:1fr}
+      .hero{flex-direction:column-reverse;padding-top:40px}
+      .hero-right{width:100%;padding-bottom:10px}
+      .contact-cards{grid-template-columns:1fr}
+      .navlinks{display:none}
+    }
+
+    /* small animation */
+    .fade-up{opacity:0;transform:translateY(12px);transition:all .6s cubic-bezier(.2,.95,.3,1)}
+    .fade-up.show{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+  <header aria-label="Main header">
+    <nav class="container" role="navigation" aria-label="Primary">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">DP</div>
+        <div>
+          <div style="font-weight:800">Divya Priya S</div>
+          <div style="font-size:12px;color:var(--muted)">Web & Android Developer</div>
+        </div>
+      </div>
+
+      <div class="navlinks" id="navlinks" aria-hidden="false">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#internship">Internships</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="cta">
+        <!-- Download button uses download attribute. Put DivyaIT.pdf in same folder -->
+        <a class="btn glow" href="DivyaIT.pdf" download="DivyaPriya_DivyaIT.pdf" aria-label="Download Resume">
+          ⬇ Download Resume
+        </a>
+        <a class="btn" href="#contact" aria-label="Contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero container" aria-labelledby="home-heading">
+      <div class="hero-left">
+        <div class="name" id="home-heading">Divya Priya S</div>
+        <div class="title">Web & Android Developer</div>
+        <p class="intro">Creative and ambitious web developer passionate about blending aesthetic design with technical precision. Experienced in building secure, responsive web applications and Android apps using Java, Node.js, MongoDB, HTML, CSS, and JavaScript. Dedicated to delivering smooth user experiences and innovative digital solutions.</p>
+
+        <div class="hero-actions">
+          <a class="download" href="DivyaIT.pdf" download="DivyaPriya_DivyaIT.pdf">Download Resume</a>
+          <a class="secondary" href="#projects">View Projects</a>
+        </div>
+
+        <div style="margin-top:18px;color:var(--muted);font-size:14px">
+          <strong>Phone:</strong> <span style="margin-left:6px">+91 6382799556</span><br>
+          <strong>Email:</strong> <a href="mailto:divyapriyait2026@gmail.com" style="color:var(--accent2)">divyapriyait2026@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div style="width:300px;max-width:90%;border-radius:18px;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);box-shadow:0 12px 40px rgba(0,0,0,0.8)">
+          <div style="font-weight:800;font-size:18px;margin-bottom:8px">Quick Profile</div>
+          <div style="color:var(--muted);font-size:14px;margin-bottom:10px">B.Tech Information Technology — EGS Pillay Engineering College (2022-2026)</div>
+          <ul style="padding-left:18px;margin:0;color:#d8e9ff">
+            <li style="margin-bottom:6px">Android Development → Java, Android Studio</li>
+            <li style="margin-bottom:6px">Web Full-Stack → Node.js, MongoDB, HTML/CSS/JS</li>
+            <li style="margin-bottom:6px">Tools → GitHub, Figma, Canva, SQL</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section about container fade-up" aria-labelledby="about-title">
+      <h2 class="section-title" id="about-title">About Me <span class="underline" aria-hidden="true"></span></h2>
+      <div class="card" style="margin-top:14px">
+        <p style="margin:0;color:#dbeeff">
+          Creative and ambitious web developer passionate about blending aesthetic design with technical precision.
+          Experienced in developing secure, responsive web applications using Java, NodeJS, MongoDB, HTML, CSS, and JavaScript.
+          Dedicated to delivering smooth user experiences and innovative digital solutions. Strong in teamwork, adaptability and problem-solving.
+        </p>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section projects container fade-up" aria-labelledby="projects-title">
+      <h2 class="section-title" id="projects-title">Projects <span class="underline" aria-hidden="true"></span></h2>
+
+      <div class="grid" role="list">
+        <article class="project-card" role="listitem">
+          <div class="proj-title">Train Food Delivery Application</div>
+          <div class="proj-tech">Android App • Java • Android Studio • Google Maps API</div>
+          <p class="proj-desc">Developed using Java and Android Studio. Implemented real-time location tracking and user authentication, integrated Google Maps API for route optimization. Resulted in improved user engagement and smoother deliveries.</p>
+        </article>
+
+        <article class="project-card" role="listitem">
+          <div class="proj-title">The Coffee & Me</div>
+          <div class="proj-tech">Full-Stack Web App • Java • Node.js • MongoDB • HTML/CSS/JS</div>
+          <p class="proj-desc">Built admin and customer portals for an online coffee shop. Implemented order placement, product management, and responsive UI with a Java backend and MongoDB database.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section container fade-up" aria-labelledby="skills-title">
+      <h2 class="section-title" id="skills-title">Skills <span class="underline" aria-hidden="true"></span></h2>
+
+      <div style="display:flex;gap:24px;flex-wrap:wrap;margin-top:12px">
+        <div style="flex:1;min-width:260px">
+          <h3 style="margin:6px 0 8px;color:#fff">Technical</h3>
+          <div class="skills-grid" aria-hidden="false">
+            <div class="skill-chip">Java</div>
+            <div class="skill-chip">Android Studio</div>
+            <div class="skill-chip">Node.js</div>
+            <div class="skill-chip">MongoDB</div>
+            <div class="skill-chip">HTML5</div>
+            <div class="skill-chip">CSS3</div>
+            <div class="skill-chip">JavaScript</div>
+            <div class="skill-chip">Python</div>
+            <div class="skill-chip">SQL</div>
+          </div>
+        </div>
+
+        <div style="flex:1;min-width:260px">
+          <h3 style="margin:6px 0 8px;color:#fff">Tools & Others</h3>
+          <div class="skills-grid">
+            <div class="skill-chip">GitHub</div>
+            <div class="skill-chip">Figma</div>
+            <div class="skill-chip">Canva</div>
+            <div class="skill-chip">Responsive Design</div>
+            <div class="skill-chip">Basic Linux</div>
+            <div class="skill-chip">Prompt Engineering</div>
+            <div class="skill-chip">DBMS</div>
+          </div>
+
+          <h3 style="margin:16px 0 8px;color:#fff">Soft Skills</h3>
+          <div class="skills-grid">
+            <div class="skill-chip">Self-Motivation</div>
+            <div class="skill-chip">Team Leadership</div>
+            <div class="skill-chip">Adaptability</div>
+            <div class="skill-chip">Creativity</div>
+            <div class="skill-chip">Problem-Solving</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERNSHIPS -->
+    <section id="internship" class="section internship container fade-up" aria-labelledby="intern-title">
+      <h2 class="section-title" id="intern-title">Internships <span class="underline" aria-hidden="true"></span></h2>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px">
+        <div class="card">
+          <div style="font-weight:800">Google — Android Development (Virtual)</div>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">Jul - Sep 2024</div>
+          <p style="margin-top:10px;color:#dbeeff">Completed a 10-week internship focused on Java fundamentals and Android application development. Built a working mobile app demonstrating practical use of application concepts and collaborated in a virtual team.</p>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:800">AICTE — Web Full Stack Developer (Virtual)</div>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">Apr - Jun 2025</div>
+          <p style="margin-top:10px;color:#dbeeff">Completed a 10-week internship focused on frontend fundamentals and fullstack web application development. Built a real-time website project and collaborated to solve real-world web challenges.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section education container fade-up" aria-labelledby="edu-title">
+      <h2 class="section-title" id="edu-title">Education <span class="underline" aria-hidden="true"></span></h2>
+
+      <div style="display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px">
+        <div class="card">
+          <div style="font-weight:800">EGS Pillay Engineering College</div>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">B.Tech - Information Technology (2022 - 2026) • CGPA: 80%</div>
+        </div>
+
+        <div class="card" style="margin-top:8px">
+          <div style="font-weight:800">Municipal Girls Hr. Sec School</div>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">HSC — 72% (2020 - 2022)</div>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">SSLC — 66% (2019 - 2020)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section container fade-up" aria-labelledby="contact-title">
+      <h2 class="section-title" id="contact-title">Contact <span class="underline" aria-hidden="true"></span></h2>
+
+      <div class="contact-cards" role="list">
+        <div class="contact-card" role="listitem">
+          <div style="font-size:18px">📞</div>
+          <div class="big">+91 6382799556</div>
+          <div class="small">Phone (India)</div>
+        </div>
+
+        <div class="contact-card" role="listitem">
+          <div style="font-size:18px">✉️</div>
+          <div class="big"><a href="mailto:divyapriyait2026@gmail.com" style="color:inherit">divyapriyait2026@gmail.com</a></div>
+          <div class="small">Email</div>
+        </div>
+
+        <div class="contact-card" role="listitem">
+          <div style="font-size:18px">💼</div>
+          <div class="big"><a href="https://github.com/DivyaPriya250413" target="_blank" rel="noopener">github.com/DivyaPriya2504</a></div>
+          <div class="small"><a href="https://www.linkedin.com/in/divya-priya-02b6b9300" target="_blank" rel="noopener">LinkedIn Profile</a></div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;color:var(--muted);font-size:14px">You can also download the resume here: <a href="DivyaIT.pdf" download="DivyaPriya_DivyaIT.pdf" style="color:var(--accent1);font-weight:700">Download Resume (PDF)</a></div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Divya Priya S — Built with ❤️ • <a href="DivyaIT.pdf" download>Download Resume</a>
+    </footer>
+  </main>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - 72;
+          window.scrollTo({top,behavior:'smooth'});
+        }
+      });
+    });
+
+    // Reveal on scroll
+    const observers = document.querySelectorAll('.fade-up');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12});
+    observers.forEach(el=>io.observe(el));
+
+    // Fill year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Active nav link highlight
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('.navlinks a');
+    function updateActive(){
+      let idx = sections.length;
+      while(--idx && window.scrollY + 90 < sections[idx].offsetTop) {}
+      navLinks.forEach(a=>a.classList.remove('active'));
+      const id = sections[idx].id;
+      document.querySelectorAll('.navlinks a[href="#'+id+'"]').forEach(a=>a.classList.add('active'));
+    }
+    updateActive();
+    window.addEventListener('scroll', updateActive);
+  </script>
+</body>
+</html>
